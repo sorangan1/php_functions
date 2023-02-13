@@ -8,6 +8,15 @@ function crearArray(int $size, int $min, int $max): array
 	return $matriz;
 }
 
+function crearArrayBidimensional(int $filas, int $columnas, int $min = 0, int $max = 20): array
+{
+	for ($i = 0; $i < $filas; $i++) 
+	{
+		$matriz[] = crearArray($columnas, $min, $max );
+	}
+	return $matriz;
+}
+
 function mostrarArray(array &$matrizA, array &$matrizB = null)
 {
 	if ($matrizB == null) 
@@ -25,6 +34,32 @@ function mostrarArray(array &$matrizA, array &$matrizB = null)
 		print("<br>");
 	}
 
+}
+
+function mostrarArrayBidimensional(array $matriz, bool $separado = false) 
+{
+	if ($separado) 
+	{
+		foreach ($matriz as $indice => $subMatriz) {
+			foreach ($subMatriz as $indiceSubMatriz => $valor) {
+				print("[<i>$indiceSubMatriz</i>] ⇒ <b>$valor</b> <br>");
+			}
+			print("<br>");
+		}
+	}
+	else
+	{
+		print("<table border='1px'>");
+		foreach ($matriz as $indice => $subMatriz) {
+			print("<tr>");
+			foreach ($subMatriz as $indiceSubMatriz => $valor) {
+				print("<td align='center' width='30'>$valor</td>");
+			}
+			print("</tr>");
+		}
+		print("</table>");
+	}
+	
 }
 
 
