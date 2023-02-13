@@ -1,6 +1,6 @@
 <?php
 
-function crearArray(int $size, int $min, int $max): array
+function crearMatriz(int $size, int $min, int $max): array
 {
 	for ($i = 0; $i < $size; $i++) {
 		$matriz[] = rand($min, $max);
@@ -8,16 +8,31 @@ function crearArray(int $size, int $min, int $max): array
 	return $matriz;
 }
 
-function crearArrayBidimensional(int $filas, int $columnas, int $min = 0, int $max = 20): array
+function crearMatrizBidimensional(int $filas, int $columnas, int $min = 0, int $max = 20): array
 {
 	for ($i = 0; $i < $filas; $i++) 
 	{
-		$matriz[] = crearArray($columnas, $min, $max );
+		$matriz[] = crearMatriz($columnas, $min, $max );
 	}
 	return $matriz;
 }
 
-function mostrarArray(array &$matrizA, array &$matrizB = null)
+function crearMatrizUnitaria(int $n): array
+{
+	$matriz = crearMatrizBidimensional($n, $n, 0, 0);
+
+	$i = 0;
+	foreach ($matriz as $key => $subMatriz) {
+		foreach ($subMatriz as $subKey => $subValor) {
+			$matriz[$i][$i] = 1;
+		}
+		$i++;
+	}
+
+	return $matriz;
+}
+
+function mostrarMatriz(array &$matrizA, array &$matrizB = null)
 {
 	if ($matrizB == null) 
 	{
@@ -36,7 +51,7 @@ function mostrarArray(array &$matrizA, array &$matrizB = null)
 
 }
 
-function mostrarArrayBidimensional(array $matriz, bool $separado = false) 
+function mostrarMatrizBidimensional(array $matriz, bool $separado = false) 
 {
 	if ($separado) 
 	{
@@ -144,7 +159,7 @@ function ordIntercambio(array &$matrizA, array &$matrizB = null) {
 	}
 }
 
-function mezclarArrays(array $matrizA, array $matrizB): array {
+function mezclarMatrices(array $matrizA, array $matrizB): array {
 	$indexT1 = $indexT2 = 0;
 	$finT1 = $finT2 = "";
 	$mueve = "";
@@ -176,6 +191,19 @@ function mezclarArrays(array $matrizA, array $matrizB): array {
 	}
 
 	return $matrizMezclada;
+}
+
+function transponerMatrizBidimensional(array $matriz): array
+{
+
+	$matrizTranspuesta = array();
+
+	foreach ($matriz as $key => $subMatriz) {
+		foreach ($subMatriz as $subKey => $subValor) {
+			$matrizTranspuesta[$subKey][$key] = $subValor;
+		}
+	}
+	return $matrizTranspuesta;
 }
 
 ?>
